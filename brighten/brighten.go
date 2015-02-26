@@ -2,7 +2,8 @@ package brighten
 
 import (
   "math"
-  "errors"
+  "fmt"
+  "reflect"
   "image"
   "image/color"
 )
@@ -38,7 +39,7 @@ func Brighten(img image.Image, factor float64) (image.Image, error) {
         updatedColor := color.NRGBA64{uint16(r), uint16(g), uint16(b), uint16(a)}
         input.SetNRGBA64(x, y, updatedColor)
       default:
-        return nil, errors.New("Unable to brighten image type.")
+        return nil, fmt.Errorf("Unable to brighten image type: %v", reflect.TypeOf(input))
       }
     }
   }
