@@ -68,7 +68,7 @@ func computeUpdatedRGBA(col color.Color, factor float64) (r, g, b, a uint32) {
 }
 
 func finalAdjustment(diff float64) (float64) {
-  adjustment := 0.95
+  adjustment := 1.05
   if diff > 0 {
     return math.Pow(diff, adjustment)
   } else {
