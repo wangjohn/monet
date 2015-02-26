@@ -1,7 +1,6 @@
 package brighten
 
 import (
-  "fmt"
   "image"
   "math"
 )

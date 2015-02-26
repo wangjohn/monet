@@ -60,9 +60,18 @@ func computeUpdatedRGBA(col color.Color, factor float64) (r, g, b, a uint32) {
     endpoint = 0.0
   }
 
-  r = r + uint32((endpoint - float64(r)) * math.Abs(factor))
-  g = g + uint32((endpoint - float64(g)) * math.Abs(factor))
-  b = b + uint32((endpoint - float64(b)) * math.Abs(factor))
-  a = a + uint32((endpoint - float64(a)) * math.Abs(factor))
+  r = r + uint32(finalAdjustment((endpoint - float64(r)) * math.Abs(factor)))
+  g = g + uint32(finalAdjustment((endpoint - float64(g)) * math.Abs(factor)))
+  b = b + uint32(finalAdjustment((endpoint - float64(b)) * math.Abs(factor)))
+  a = a + uint32(finalAdjustment((endpoint - float64(a)) * math.Abs(factor)))
   return
+}
+
+func finalAdjustment(diff float64) (float64) {
+  adjustment := 0.95
+  if diff > 0 {
+    return math.Pow(diff, adjustment)
+  } else {
+    return -math.Pow(math.Abs(diff), adjustment)
+  }
 }

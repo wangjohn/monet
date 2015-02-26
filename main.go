@@ -22,7 +22,7 @@ func main() {
   }
 
   fmt.Println(brighten.StandardLuminance(img))
-  img, err = brighten.Brighten(img, 0.5)
+  img, err = brighten.Brighten(img, 0.55)
   if err != nil {
     fmt.Println(err)
   }
