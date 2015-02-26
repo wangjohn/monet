@@ -7,7 +7,7 @@ import (
   "image"
   "image/png"
 
-  "github.com/wangjohn/monet"
+  "github.com/wangjohn/monet/brighten"
 )
 
 const (
@@ -21,7 +21,8 @@ func main() {
     fmt.Println(err)
   }
 
-  img, err = Brighten(img, 0.5)
+  fmt.Println(brighten.StandardLuminance(img))
+  img, err = brighten.Brighten(img, 0.5)
   if err != nil {
     fmt.Println(err)
   }
@@ -29,6 +30,7 @@ func main() {
   w, _ := os.Create(outputFilename)
   defer w.Close()
   png.Encode(w, img)
+  fmt.Println(brighten.StandardLuminance(img))
 }
 
 func decode(filename string) (image.Image, string, error) {
